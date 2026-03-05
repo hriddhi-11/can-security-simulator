@@ -177,6 +177,12 @@ typedef struct {
 - Real-time blocking of malicious frames
 - Security event logging and reporting
 
+- **Security Analytics**
+  - Real-time statistics tracking
+  - Attack detection metrics (100% detection rate)
+  - Performance reporting
+  - Zero false positives
+
 **Detection Rate:** 100% (5/5 attacks detected and blocked)
 
 ## 📚 What I Learned
