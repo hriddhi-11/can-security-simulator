@@ -1,0 +1,18 @@
+# Executables
+can_simulator
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Mac stuff
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

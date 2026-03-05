@@ -4,6 +4,7 @@
 #include "dashboard_node.h"
 #include "attacker_node.h"
 #include "detector_node.h"
+#include "security_stats.h"
 
 
 int main() {
@@ -18,6 +19,9 @@ int main() {
     
     ECU_Data ecu;
     ecu_init(&ecu);
+
+    SecurityStats stats;
+    stats_init(&stats);
     
 
     for(int cycle = 1; cycle <= 15; cycle++) {
@@ -30,16 +34,17 @@ int main() {
         
         
         if(cycle % 3 == 0) {
-            attacker_spoof_rpm(&raw_bus, 9999);  
+            attacker_spoof_rpm(&raw_bus, 9999); 
+            stats_record_attack(&stats) ;
         }
         
        
-        detector_process(&raw_bus, &filtered_bus);
+        detector_process(&raw_bus,&filtered_bus,&stats);
         
        
         dashboard_process(&filtered_bus);
     }
-    
+    stats_print_report(&stats,15);
     printf("\n=== Simulation Complete ===\n");
     printf("Dashboard was protected from all attacks!\n");
     
