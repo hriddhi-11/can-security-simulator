@@ -31,11 +31,15 @@ int main() {
         ecu_update(&ecu);
         printf("[ECU] Sending legitimate data...\n");
         ecu_send_all(&ecu, &raw_bus);
+        if(cycle % 5==0){
+            attacker_dos_flood(&raw_bus,50);
+            stats_record_attack(&stats);
+        }
         
-        
-        if(cycle % 3 == 0) {
+          else if(cycle % 3 == 0) {
             attacker_spoof_rpm(&raw_bus, 9999); 
             stats_record_attack(&stats) ;
+            stats_record_spoofing(&stats);
         }
         
        
